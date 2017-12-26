@@ -1,15 +1,17 @@
 <?php
 
-namespace Galantom\Models\Notifications;
+namespace ByTIC\Notifications\Dispatcher;
 
+use ByTIC\Notifications\ChannelManager;
 use Nip\Collection;
-use Record;
 
 /**
  * Class NotificationSender
+ * Used to send a notification
+ *
  * @package Galantom\Models\Notifications
  */
-class NotificationSender
+class Dispatcher implements DispatcherInterface
 {
 
     /**
@@ -30,46 +32,39 @@ class NotificationSender
     }
 
     /**
-     * Send the given notification to the given notifiable entities.
-     *
-     * @param  Collection|array|mixed $notifiables
-     * @param  mixed $notification
-     * @return void
+     * @inheritdoc
      */
     public function send($notifiables, $notification)
     {
         $notifiables = $this->formatNotifiables($notifiables);
 
-        return $this->sendNow($notifiables, $notification);
+        $this->sendNow($notifiables, $notification);
     }
 
     /**
      * Format the notifiables into a Collection / array if necessary.
      *
      * @param  mixed $notifiables
+     *
      * @return Collection|array
      */
     protected function formatNotifiables($notifiables)
     {
-        if (!$notifiables instanceof Collection && !is_array($notifiables)) {
+        if ( ! $notifiables instanceof Collection && ! is_array($notifiables)) {
             return $notifiables instanceof Record
                 ? new Collection([$notifiables]) : [$notifiables];
         }
+
         return $notifiables;
     }
 
     /**
-     * Send the given notification immediately.
-     *
-     * @param  Collection|array|mixed $notifiables
-     * @param  Notification $notification
-     * @param  array $channels
-     * @return void
+     * @inheritdoc
      */
     public function sendNow($notifiables, $notification, array $channels = null)
     {
         $notifiables = $this->formatNotifiables($notifiables);
-        $original = clone $notification;
+        $original    = clone $notification;
         foreach ($notifiables as $notifiable) {
             $notificationId = microtime();
 
@@ -89,11 +84,12 @@ class NotificationSender
      * @param  string $id
      * @param  mixed $notification
      * @param  string $channel
+     *
      * @return void
      */
     protected function sendToNotifiable($notifiable, $id, $notification, $channel)
     {
-        if (!$notification->id) {
+        if ( ! $notification->id) {
             $notification->id = $id;
         }
 //        if (! $this->shouldSendNotification($notifiable, $notification, $channel)) {

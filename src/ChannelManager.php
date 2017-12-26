@@ -35,7 +35,7 @@ class ChannelManager
      */
     public function send($notifiables, $notification)
     {
-        return (new NotificationSender($this))->send($notifiables, $notification);
+        return (new NotificationDispatcher($this))->send($notifiables, $notification);
     }
 
     /**
