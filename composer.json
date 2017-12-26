@@ -1,0 +1,33 @@
+{
+  "name": "bytic/notifications",
+  "type": "library",
+  "license": "MIT",
+  "description": "Notifications module for bytic library",
+  "keywords": [  ],
+  "homepage": "https://github.com/ByTIC/notifications",
+  "authors": [
+    {
+      "name": "Gabriel Solomon",
+      "email": "hello@gabrielsolomon.ro"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ByTIC\\Notifications\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ByTIC\\Notifications\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "^7.0",
+    "bytic/framework": "^1.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.0",
+    "phpunit/phpunit": "^6.2",
+    "mockery/mockery": "^0.9"
+  }
+}
