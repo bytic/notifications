@@ -3,8 +3,10 @@
 namespace ByTIC\Notifications\Tests;
 
 use ByTIC\Notifications\ChannelManager;
+use ByTIC\Notifications\Channels\ChannelInterface;
 use ByTIC\Notifications\Channels\MailDbChannel;
 use ByTIC\Notifications\Dispatcher\Dispatcher;
+use ByTIC\Notifications\Dispatcher\DispatcherInterface;
 use ByTIC\Notifications\NotificationServiceProvider;
 use Nip\Container\Container;
 
@@ -19,10 +21,10 @@ class NotificationServiceProviderTest extends AbstractTest
         $provider->setContainer($container);
         $provider->register();
 
-        $channelManager = $container->get('notifications.channels');
+        $channelManager = $container->get(ChannelInterface::class);
         $this->assertInstanceOf(ChannelManager::class, $channelManager);
 
-        $dispatcher = $container->get('notifications.dispatcher');
+        $dispatcher = $container->get(DispatcherInterface::class);
         $this->assertInstanceOf(Dispatcher::class, $dispatcher);
     }
 

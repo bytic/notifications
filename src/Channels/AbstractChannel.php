@@ -8,14 +8,6 @@ use ByTIC\Notifications\Notification;
  * Class AbstractChannel
  * @package ByTICModels\Notifications\Channels
  */
-abstract class AbstractChannel
+abstract class AbstractChannel implements ChannelInterface
 {
-
-    /**
-     * @param $notifiable
-     * @param Notification $notification
-     * @return int
-     */
-    abstract public function send($notifiable, Notification $notification);
-
 }

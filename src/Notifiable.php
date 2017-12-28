@@ -20,7 +20,7 @@ trait Notifiable
      */
     public function notify($instance)
     {
-//        app(Dispatcher::class)->send($this, $instance);
+        app(Dispatcher::class)->send($this, $instance);
     }
 
     /**
