@@ -3,7 +3,7 @@
 namespace ByTIC\Notifications\Tests;
 
 use ByTIC\Notifications\ChannelManager;
-use ByTIC\Notifications\Channels\MailDbChannel;
+use ByTIC\Notifications\Channels\EmailDbChannel;
 
 class ChannelManagerTest extends AbstractTest
 {
@@ -13,7 +13,7 @@ class ChannelManagerTest extends AbstractTest
         $manager = new ChannelManager();
         
         $channel = $manager->channel('mailDb');
-        $this->assertInstanceOf(MailDbChannel::class, $channel);
+        $this->assertInstanceOf(EmailDbChannel::class, $channel);
     }
 
 }

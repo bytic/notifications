@@ -8,7 +8,7 @@ use ByTIC\Notifications\Notification;
  * Class MailChannel
  * @package ByTICModels\Notifications\Channels
  */
-class MailDbChannel extends AbstractChannel
+class EmailDbChannel extends AbstractChannel
 {
 
     /**

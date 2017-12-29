@@ -4,7 +4,7 @@ namespace ByTIC\Notifications\Tests;
 
 use ByTIC\Notifications\ChannelManager;
 use ByTIC\Notifications\Channels\ChannelInterface;
-use ByTIC\Notifications\Channels\MailDbChannel;
+use ByTIC\Notifications\Channels\EmailDbChannel;
 use ByTIC\Notifications\Dispatcher\Dispatcher;
 use ByTIC\Notifications\Dispatcher\DispatcherInterface;
 use ByTIC\Notifications\NotificationServiceProvider;

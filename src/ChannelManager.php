@@ -3,7 +3,7 @@
 namespace ByTIC\Notifications;
 
 use ByTIC\Notifications\Channels\AbstractChannel;
-use ByTIC\Notifications\Channels\MailDbChannel;
+use ByTIC\Notifications\Channels\EmailDbChannel;
 use Nip\Collection;
 use Nip\Utility\Traits\SingletonTrait;
 
@@ -90,11 +90,10 @@ class ChannelManager
     /**
      * Create an instance of the mail driver.
      *
-     * @return MailDbChannel
+     * @return EmailDbChannel
      */
-    protected function createMailDbDriver()
+    protected function createEmailDbDriver()
     {
-        return new MailDbChannel();
+        return new EmailDbChannel();
     }
-
 }

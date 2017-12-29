@@ -71,6 +71,7 @@ class Dispatcher implements DispatcherInterface
             if (empty($viaChannels = $channels ?: $notification->via($notifiable))) {
                 continue;
             }
+
             foreach ($viaChannels as $channel) {
                 $this->sendToNotifiable($notifiable, $notificationId, clone $original, $channel);
             }
