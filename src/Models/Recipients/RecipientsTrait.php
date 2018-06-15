@@ -82,7 +82,7 @@ trait RecipientsTrait
     /**
      * @return string
      */
-    public function getTypeItemsDirectory()
+    public function getTypesDirectory()
     {
         return __DIR__ . DIRECTORY_SEPARATOR . 'Types';
     }
@@ -90,7 +90,7 @@ trait RecipientsTrait
     /**
      * @return string
      */
-    public function getTypeItemsRootNamespace()
+    public function getTypeNamespace()
     {
         return __NAMESPACE__ . '\Types\\';
     }
