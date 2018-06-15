@@ -47,7 +47,7 @@ abstract class AbstractNotification
      */
     public function via($notifiable)
     {
-        return ['mailDb'];
+        return ['emailDb'];
     }
 
     /**
