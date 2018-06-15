@@ -4,6 +4,7 @@ namespace ByTIC\Notifications;
 
 use ByTIC\Notifications\Channels\AbstractChannel;
 use ByTIC\Notifications\Channels\EmailDbChannel;
+use ByTIC\Notifications\Dispatcher\Dispatcher;
 use Nip\Collection;
 use Nip\Utility\Traits\SingletonTrait;
 
@@ -33,7 +34,7 @@ class ChannelManager
      */
     public function send($notifiables, $notification)
     {
-        return (new NotificationDispatcher($this))->send($notifiables, $notification);
+        return (new Dispatcher($this))->send($notifiables, $notification);
     }
 
     /**
