@@ -9,7 +9,7 @@ use Nip\Collection;
  * Class NotificationSender
  * Used to send a notification
  *
- * @package Galantom\Models\Notifications
+ * @package ByTIC\Notifications\Dispatcher
  */
 class Dispatcher implements DispatcherInterface
 {

@@ -10,7 +10,7 @@ use Nip\Utility\Traits\SingletonTrait;
 
 /**
  * Class ChannelManager
- * @package Galantom\Models\Notifications
+ * @package ByTIC\Notifications
  */
 class ChannelManager
 {

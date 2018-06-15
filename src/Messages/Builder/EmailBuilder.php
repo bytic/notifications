@@ -13,7 +13,7 @@ use Nip\Records\Locator\ModelLocator;
 /**
  * Class AbstractBuilder
  *
- * @package Galantom\Models\Notifications\Messages\Builder
+ * @package ByTIC\Notifications\Messages\Builder
  */
 class EmailBuilder extends GenericBuilder
 {

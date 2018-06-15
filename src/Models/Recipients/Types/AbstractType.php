@@ -13,7 +13,7 @@ use Nip\Records\AbstractModels\Record;
 
 /**
  * Class AbstractType
- * @package Galantom\Models\Notifications\Recipients\Types
+ * @package ByTIC\Notifications\Models\Recipients\Types
  *
  * @method Recipient getItem
  */
