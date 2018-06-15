@@ -8,6 +8,7 @@ use ByTIC\Notifications\Messages\Builder\EmailBuilder;
 use ByTIC\Notifications\Models\Messages\MessageTrait as Message;
 use ByTIC\Notifications\Models\Messages\MessagesTrait as Messages;
 use Nip\Records\AbstractModels\Record;
+use Nip\Records\Locator\ModelLocator;
 
 /**
  * Class AbstractNotification
@@ -133,7 +134,9 @@ abstract class AbstractNotification
      */
     protected function generateNotificationMessage()
     {
-        return Messages::getGlobal(
+        /** @var Messages $messages */
+        $messages = ModelLocator::get('Notifications\Messages');
+        return $messages::getGlobal(
             $this->getEvent()->getTopic(),
             $this->getRecipientName(),
             'email'

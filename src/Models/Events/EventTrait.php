@@ -74,7 +74,7 @@ trait EventTrait
      */
     public function populateFromModel($model)
     {
-        $this->model = $model;
+        $this->setModel($model);
         $this->id_item = $model->id;
     }
 
@@ -98,11 +98,19 @@ trait EventTrait
     {
         $item = $this->findModel();
         if ($item instanceof Record) {
-            $this->model = $item;
+            $this->setModel($item);
 
             return;
         }
         throw new NotificationModelNotFoundException('Error finding item [' . $this->id_item . ']');
+    }
+
+    /**
+     * @param Record|null $model
+     */
+    public function setModel(Record $model)
+    {
+        $this->model = $model;
     }
 
     /**
