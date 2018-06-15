@@ -21,4 +21,39 @@ class RecipientsTraitTest extends AbstractTest
         self::assertInstanceOf(Collection::class, $types['collection']);
         self::assertInstanceOf(Single::class, $types['single']);
     }
+
+    /**
+     * @param $notification
+     * @param $recipient
+     * @param $target
+     * @param $trigger
+     *
+     * @dataProvider generateNotificationNameData
+     */
+    public function testGenerateNotificationName($notification, $recipient, $target, $trigger)
+    {
+        self::assertSame($notification, Recipients::generateNotificationName($recipient, $target, $trigger));
+    }
+
+    /**
+     * @return array
+     */
+    public function generateNotificationNameData()
+    {
+        $base = '\ByTIC\Notifications\Tests\Fixtures\Models\\';
+        return [
+            [
+                $base . 'OrgSupporters\Notifications\Fundraising_Pages\PendingNotification',
+                'org_supporters',
+                'fundraising-page',
+                'pending'
+            ],
+            [
+                $base . 'OrgSupporters\Notifications\FundraisingPages\PendingNotification',
+                'org_supporters',
+                'fundraising_page',
+                'pending'
+            ],
+        ];
+    }
 }

@@ -32,4 +32,13 @@ class RecipientTraitTest extends AbstractTest
         $result = $recipient->sendEvent($event);
         self::assertTrue($result);
     }
+
+//    public function testGenerateNotificationName()
+//    {
+//        $recipient = new Recipient();
+//        $recipient->getRelation('Topic')->setResults()
+//
+//        $notificationName = $recipient->generateNotificationName();
+//        self::assertSame('', $notificationName);
+//    }
 }

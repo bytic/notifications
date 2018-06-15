@@ -25,7 +25,7 @@ use Nip\Records\RecordManager as Records;
  *
  * @method AbstractType getType
  * @method Topic getTopic
- * @method RecipientsTrait getModelManager()
+ * @method RecipientsTrait getManager()
  */
 trait RecipientTrait
 {
@@ -80,7 +80,7 @@ trait RecipientTrait
      */
     public function generateNotificationName()
     {
-        return $this->getModelManager()::generateNotificationName(
+        return $this->getManager()::generateNotificationName(
             $this->getRecipient(),
             $this->getTopic()->getTarget(),
             $this->getTopic()->getTrigger()
@@ -134,7 +134,7 @@ trait RecipientTrait
      */
     public function generateRecipientManager()
     {
-        return $this->getModelManager()::getRecipientManager($this->getRecipient());
+        return $this->getManager()::getRecipientManager($this->getRecipient());
     }
 
     /**
@@ -142,6 +142,6 @@ trait RecipientTrait
      */
     public function generateRecipientGetterMethod()
     {
-        return $this->getModelManager()::generateRecipientGetterMethod($this->getRecipient());
+        return $this->getManager()::generateRecipientGetterMethod($this->getRecipient());
     }
 }

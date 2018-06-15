@@ -12,4 +12,12 @@ use ByTIC\Notifications\Models\Recipients\RecipientsTrait;
 class Recipients extends Records
 {
     use RecipientsTrait;
+
+    /**
+     * @return string
+     */
+    public function getRootNamespace()
+    {
+        return '\ByTIC\Notifications\Tests\Fixtures\Models\\';
+    }
 }
