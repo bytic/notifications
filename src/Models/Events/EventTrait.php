@@ -20,10 +20,33 @@ use Nip\Records\AbstractModels\Record;
  */
 trait EventTrait
 {
+    use \ByTIC\Common\Records\Traits\HasStatus\RecordTrait;
+
     /**
      * @var null|Record
      */
     protected $model = null;
+
+    /**
+     * @return bool
+     */
+    public function send()
+    {
+        try {
+            $this->sendToAll();
+        } catch (NotificationRecipientModelNotFoundException $exception) {
+            $this->updateStatus('skipped');
+
+            return;
+        } catch (NotificationModelNotFoundException $exception) {
+            $this->updateStatus('skipped');
+
+            return;
+        }
+        $this->updateStatus('sent');
+
+        return true;
+    }
 
     /**
      * @throws NotificationModelNotFoundException
