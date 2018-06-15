@@ -14,7 +14,6 @@ use ByTIC\Notifications\Tests\Fixtures\Models\Events\Events;
  */
 class EventsTraitTest extends AbstractTest
 {
-
     public function testGetStatuses()
     {
         $statuses = Events::instance()->getStatuses();

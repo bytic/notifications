@@ -11,7 +11,6 @@ use ByTIC\Notifications\Channels\EmailDbChannel;
  */
 class ChannelManagerTest extends AbstractTest
 {
-    
     public function testDriverMailDb()
     {
         $manager = new ChannelManager();
@@ -19,5 +18,4 @@ class ChannelManagerTest extends AbstractTest
         $channel = $manager->channel('emailDb');
         $this->assertInstanceOf(EmailDbChannel::class, $channel);
     }
-
 }

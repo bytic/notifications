@@ -102,5 +102,4 @@ class Dispatcher implements DispatcherInterface
 //            new Events\NotificationSent($notifiable, $notification, $channel, $response)
 //        );
     }
-
 }

@@ -4,7 +4,6 @@ namespace ByTIC\Notifications;
 
 use ByTIC\Notifications\Dispatcher\DispatcherInterface;
 
-
 /**
  * Class Notifiable
  * @package ByTIC\Notifications
