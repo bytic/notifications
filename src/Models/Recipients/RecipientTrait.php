@@ -67,7 +67,7 @@ trait RecipientTrait
      * @param Event|null $event
      * @return Notification
      */
-    public function generateNotification(Event $event = null)
+    public function generateNotification($event = null)
     {
         $class = $this->generateNotificationName();
         /** @var Notification $notification */

@@ -33,7 +33,7 @@ abstract class AbstractNotification
      *
      * @param Event $event
      */
-    public function __construct(Event $event = null)
+    public function __construct($event = null)
     {
         if ($event) {
             $this->setEvent($event);

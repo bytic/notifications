@@ -64,7 +64,7 @@ trait EventTrait
     /**
      * @param Topic $topic
      */
-    public function populateFromTopic(Topic $topic)
+    public function populateFromTopic($topic)
     {
         $this->id_topic = $topic->id;
     }
@@ -72,7 +72,7 @@ trait EventTrait
     /**
      * @param Record $model
      */
-    public function populateFromModel(Record $model)
+    public function populateFromModel($model)
     {
         $this->model = $model;
         $this->id_item = $model->id;
