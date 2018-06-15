@@ -16,7 +16,7 @@ use Nip\Records\Locator\ModelLocator;
  * @property string $subject
  * @property string $content
  */
-class MessageTrait
+trait MessageTrait
 {
 
     /**
