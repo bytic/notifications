@@ -19,7 +19,7 @@ use Nip\Records\RecordManager;
  * @method Recipient[] getRecipients()
  * @method save()
  */
-class TopicTrait
+trait TopicTrait
 {
     protected $targetManager = null;
 

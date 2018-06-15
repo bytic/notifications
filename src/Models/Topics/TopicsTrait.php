@@ -12,7 +12,7 @@ use ByTIC\Notifications\Models\Topics\TopicTrait as Topic;
  *
  * @method findOneByParams($params)
  */
-class TopicsTrait
+trait TopicsTrait
 {
     use \Nip\Utility\Traits\SingletonTrait;
 
