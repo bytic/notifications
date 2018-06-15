@@ -6,6 +6,7 @@ use ByTIC\Common\Records\Traits\HasTypes\RecordTrait;
 use ByTIC\Notifications\Exceptions\NotificationModelNotFoundException;
 use ByTIC\Notifications\Exceptions\NotificationRecipientModelNotFoundException;
 use ByTIC\Notifications\Models\Events\EventTrait as Event;
+use ByTIC\Notifications\Models\Recipients\Types\AbstractType;
 use ByTIC\Notifications\Models\Topics\TopicTrait as Topic;
 use ByTIC\Notifications\Models\Messages\MessageTrait as Message;
 use ByTIC\Notifications\Notification;
@@ -22,7 +23,7 @@ use Nip\Records\RecordManager as Records;
  * @property string $type
  * @property string $active
  *
- * @method Topic getType
+ * @method AbstractType getType
  * @method Topic getTopic
  * @method RecipientsTrait getModelManager()
  */
@@ -38,7 +39,7 @@ trait RecipientTrait
      * @throws NotificationModelNotFoundException
      * @throws NotificationRecipientModelNotFoundException
      */
-    public function sendEvent(Event $event)
+    public function sendEvent($event)
     {
         if ($this->isActive()) {
             return $this->getType()->sendEvent($event);
@@ -100,6 +101,7 @@ trait RecipientTrait
         }
         return null;
     }
+
     /**
      * Return the Message from the database with the text to include
      * in the notification
