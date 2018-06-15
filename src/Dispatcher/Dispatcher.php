@@ -3,7 +3,8 @@
 namespace ByTIC\Notifications\Dispatcher;
 
 use ByTIC\Notifications\ChannelManager;
-use Nip\Collection;
+use Nip\Collections\Collection;
+use Nip\Records\AbstractModels\Record;
 
 /**
  * Class NotificationSender
@@ -36,26 +37,7 @@ class Dispatcher implements DispatcherInterface
      */
     public function send($notifiables, $notification)
     {
-        $notifiables = $this->formatNotifiables($notifiables);
-
         $this->sendNow($notifiables, $notification);
-    }
-
-    /**
-     * Format the notifiables into a Collection / array if necessary.
-     *
-     * @param  mixed $notifiables
-     *
-     * @return Collection|array
-     */
-    protected function formatNotifiables($notifiables)
-    {
-        if (!$notifiables instanceof Collection && !is_array($notifiables)) {
-            return $notifiables instanceof Record
-                ? new Collection([$notifiables]) : [$notifiables];
-        }
-
-        return $notifiables;
     }
 
     /**
@@ -79,6 +61,26 @@ class Dispatcher implements DispatcherInterface
     }
 
     /**
+     * Format the notifiables into a Collection / array if necessary.
+     *
+     * @param  mixed $notifiables
+     *
+     * @return Collection|array
+     */
+    public function formatNotifiables($notifiables)
+    {
+        if (is_array($notifiables) || $notifiables instanceof Collection) {
+            return $notifiables;
+        }
+
+        if ($notifiables instanceof Record) {
+            return new Collection([$notifiables]);
+        }
+
+        return [$notifiables];
+    }
+
+    /**
      * Send the given notification to the given notifiable via a channel.
      *
      * @param  mixed $notifiable
@@ -86,7 +88,7 @@ class Dispatcher implements DispatcherInterface
      * @param  mixed $notification
      * @param  string $channel
      *
-     * @return void
+     * @return int
      */
     protected function sendToNotifiable($notifiable, $id, $notification, $channel)
     {
@@ -101,5 +103,6 @@ class Dispatcher implements DispatcherInterface
 //        $this->events->dispatch(
 //            new Events\NotificationSent($notifiable, $notification, $channel, $response)
 //        );
+        return $response;
     }
 }

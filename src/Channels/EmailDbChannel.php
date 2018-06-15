@@ -10,7 +10,6 @@ use ByTIC\Notifications\Notification;
  */
 class EmailDbChannel extends AbstractChannel
 {
-
     /**
      * Send the given notification.
      *

@@ -34,6 +34,7 @@ abstract class AbstractType extends Generic
 
             return $this->sendNotification($notifiables, $notification);
         }
+
         throw new NotificationRecipientModelNotFoundException(
             "No model found in recipient" . $this->getItem()->recipient . " from notification event [" . $event->id . "]"
         );
