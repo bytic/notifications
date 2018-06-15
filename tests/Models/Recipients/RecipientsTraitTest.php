@@ -13,7 +13,6 @@ use ByTIC\Notifications\Tests\Fixtures\Models\Recipients\Recipients;
  */
 class RecipientsTraitTest extends AbstractTest
 {
-
     public function testGetTypes()
     {
         $types = Recipients::instance()->getTypes();

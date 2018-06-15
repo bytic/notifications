@@ -62,7 +62,6 @@ trait TopicTrait
     {
         if ($this->targetManager === null) {
             $this->targetManager = $this->generateTargetManager();
-
         }
         return $this->targetManager;
     }

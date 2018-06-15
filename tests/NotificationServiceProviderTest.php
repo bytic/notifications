@@ -15,7 +15,6 @@ use Nip\Container\Container;
  */
 class NotificationServiceProviderTest extends AbstractTest
 {
-    
     public function testAliases()
     {
         $container = new Container();

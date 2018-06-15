@@ -28,5 +28,4 @@ interface DispatcherInterface
      * @return void
      */
     public function sendNow($notifiables, $notification, array $channels = null);
-
 }
