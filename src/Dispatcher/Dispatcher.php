@@ -50,7 +50,7 @@ class Dispatcher implements DispatcherInterface
      */
     protected function formatNotifiables($notifiables)
     {
-        if ( ! $notifiables instanceof Collection && ! is_array($notifiables)) {
+        if (!$notifiables instanceof Collection && !is_array($notifiables)) {
             return $notifiables instanceof Record
                 ? new Collection([$notifiables]) : [$notifiables];
         }
@@ -64,7 +64,7 @@ class Dispatcher implements DispatcherInterface
     public function sendNow($notifiables, $notification, array $channels = null)
     {
         $notifiables = $this->formatNotifiables($notifiables);
-        $original    = clone $notification;
+        $original = clone $notification;
         foreach ($notifiables as $notifiable) {
             $notificationId = microtime();
 
@@ -90,13 +90,13 @@ class Dispatcher implements DispatcherInterface
      */
     protected function sendToNotifiable($notifiable, $id, $notification, $channel)
     {
-        if ( ! $notification->id) {
+        if (!$notification->id) {
             $notification->id = $id;
         }
 //        if (! $this->shouldSendNotification($notifiable, $notification, $channel)) {
 //            return;
 //        }
-        $response = $this->manager->driver($channel)->send($notifiable, $notification);
+        $response = $this->manager->channel($channel)->send($notifiable, $notification);
 
 //        $this->events->dispatch(
 //            new Events\NotificationSent($notifiable, $notification, $channel, $response)

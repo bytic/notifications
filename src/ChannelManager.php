@@ -30,8 +30,6 @@ class ChannelManager
     /**
      * @param Collection $notifiables
      * @param Notification $notification
-     *
-     * @return
      */
     public function send($notifiables, $notification)
     {
@@ -51,23 +49,36 @@ class ChannelManager
         // here and cache it so we can return it next time very quickly. If there is
         // already a driver created by this name, we'll just return that instance.
         if (!$this->hasChannel($channel)) {
-            $this->addChannel($channel, $this->createDriver($channel));
+            $this->addChannel($channel, $this->createChannel($channel));
         }
 
         return $this->getChannel($channel);
     }
-    
+
+    /**
+     * @param $channel
+     * @return bool
+     */
     public function hasChannel($channel)
     {
         return $this->channels->has($channel);
     }
 
+    /**
+     * @param $name
+     * @param AbstractChannel $driver
+     * @return $this
+     */
     protected function addChannel($name, AbstractChannel $driver)
     {
         $this->channels->set($name, $driver);
         return $this;
     }
-    
+
+    /**
+     * @param $channel
+     * @return mixed
+     */
     protected function getChannel($channel)
     {
         return $this->channels->get($channel);
@@ -76,13 +87,13 @@ class ChannelManager
     /**
      * Create a new driver instance.
      *
-     * @param  string $driver
+     * @param  string $channel
      *
      * @return AbstractChannel
      */
-    protected function createDriver($driver)
+    protected function createChannel($channel)
     {
-        $method = 'create' . ucfirst($driver) . 'Driver';
+        $method = 'create' . ucfirst($channel) . 'Channel';
 
         return $this->$method();
     }
@@ -92,7 +103,7 @@ class ChannelManager
      *
      * @return EmailDbChannel
      */
-    protected function createEmailDbDriver()
+    protected function createEmailDbChannel()
     {
         return new EmailDbChannel();
     }

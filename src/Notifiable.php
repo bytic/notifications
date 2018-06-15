@@ -51,11 +51,17 @@ trait Notifiable
         return null;
     }
 
+    /**
+     * @return string
+     */
     public function getNotificationEmail()
     {
         return $this->email;
     }
 
+    /**
+     * @return string
+     */
     public function getNotificationPhoneNumber()
     {
         return $this->phone_number;

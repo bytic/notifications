@@ -1,15 +1,14 @@
 <?php
 
-namespace Galantom\Models\Notifications\Messages;
+namespace ByTIC\Notifications\Models\Messages;
 
-use Galantom\Models\Notifications\Recipients\Recipient;
-use Galantom\Models\Notifications\Recipients\Recipients;
-use Record;
+use ByTIC\Notifications\Models\Recipients\RecipientTrait as Recipient;
+use Nip\Records\Locator\ModelLocator;
 
 /**
  * Class Topic
  *
- * @package Galantom\Models\Notifications\Topics
+ * @package ByTIC\Notifications\Models\Topics
  *
  * @property int $id_topic
  * @property string $recipient
@@ -17,7 +16,7 @@ use Record;
  * @property string $subject
  * @property string $content
  */
-class Message extends Record
+class MessageTrait
 {
 
     /**
@@ -45,13 +44,14 @@ class Message extends Record
     }
 
     /**
-     * @return false|Recipient
+     * @return Recipient|false|\Nip\Records\AbstractModels\Record
      */
     public function getNotificationRecipient()
     {
         $params = [];
         $params['where'][] = ['`id_topic` = ?', $this->id_topic];
         $params['where'][] = ['`recipient` = ?', $this->recipient];
-        return Recipients::instance()->findOneByParams($params);
+        $recipientsTable = ModelLocator::get('Notifications\Recipients');
+        return $recipientsTable->findOneByParams($params);
     }
 }

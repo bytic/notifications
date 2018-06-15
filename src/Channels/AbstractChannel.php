@@ -2,8 +2,6 @@
 
 namespace ByTIC\Notifications\Channels;
 
-use ByTIC\Notifications\Notification;
-
 /**
  * Class AbstractChannel
  * @package ByTICModels\Notifications\Channels

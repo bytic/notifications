@@ -1,14 +1,14 @@
 <?php
 
-namespace Galantom\Models\Notifications\Messages\Builder;
+namespace ByTIC\Notifications\Messages\Builder;
 
 use ByTIC\Common\Records\Emails\EmailTrait;
-use Email;
-use Galantom\Models\Emails\Builder\GenericBuilder;
-use Galantom\Models\Notifications\AbstractNotification as Notification;
-use Galantom\Models\Notifications\Messages\Message;
-use Galantom\Models\Notifications\Notifiable;
-use Record;
+use ByTIC\Common\Records\Emails\Builder\ViewBuilder as GenericBuilder;
+use ByTIC\Notifications\Notifications\AbstractNotification as Notification;
+use ByTIC\Notifications\Models\Messages\MessageTrait as Message;
+use ByTIC\Notifications\Notifiable;
+use Nip\Records\AbstractModels\Record;
+use Nip\Records\Locator\ModelLocator;
 
 /**
  * Class AbstractBuilder
@@ -92,7 +92,7 @@ class EmailBuilder extends GenericBuilder
     }
 
     /**
-     * @return []
+     * @return array
      */
     public function getMergeFields()
     {
@@ -113,7 +113,8 @@ class EmailBuilder extends GenericBuilder
         return [];
     }
 
-    /**
+    /** @noinspection PhpUnusedParameterInspection
+     *
      * Get the MergeField value
      *
      * @param string $field Field Name
@@ -136,12 +137,15 @@ class EmailBuilder extends GenericBuilder
     }
 
     /**
-     * @param Email|EmailTrait $email
+     * @param EmailTrait $email
      * @return mixed
      */
     protected function hydrateEmail($email)
     {
-        $email->to = $this->getNotifiable()->routeNotificationFor('mail');
+        $notifiable = $this->getNotifiable();
+        if (method_exists($notifiable, 'routeNotificationFor')) {
+            $email->to = $this->getNotifiable()->routeNotificationFor('mail');
+        }
         return parent::hydrateEmail($email);
     }
 
@@ -165,5 +169,13 @@ class EmailBuilder extends GenericBuilder
     public function setNotifiable($notifiable)
     {
         $this->notifiable = $notifiable;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function getEmailsManager()
+    {
+        return ModelLocator::get('emails');
     }
 }

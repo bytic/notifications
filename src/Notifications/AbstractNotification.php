@@ -1,16 +1,17 @@
 <?php
 
-namespace ByTIC\Notifications;
+namespace ByTIC\Notifications\Notifications;
 
-use ByTIC\Notifications\Events\Event;
+use ByTIC\Notifications\Exceptions\NotificationModelNotFoundException;
+use ByTIC\Notifications\Models\Events\EventTrait as Event;
 use ByTIC\Notifications\Messages\Builder\EmailBuilder;
-use ByTIC\Notifications\Messages\Message;
-use ByTIC\Notifications\Messages\Messages;
-use Record;
+use ByTIC\Notifications\Models\Messages\MessageTrait as Message;
+use ByTIC\Notifications\Models\Messages\MessagesTrait as Messages;
+use Nip\Records\AbstractModels\Record;
 
 /**
- * Class Notification
- *
+ * Class AbstractNotification
+ * @package ByTIC\Notifications
  */
 abstract class AbstractNotification
 {
@@ -39,7 +40,8 @@ abstract class AbstractNotification
         }
     }
 
-    /**
+    /** @noinspection PhpUnusedParameterInspection
+     *
      * @param Record $notifiable
      * @return array
      */
@@ -50,6 +52,7 @@ abstract class AbstractNotification
 
     /**
      * @return EmailBuilder
+     * @throws NotificationModelNotFoundException
      */
     public function generateEmailMessage()
     {
@@ -71,6 +74,7 @@ abstract class AbstractNotification
     /**
      * @param EmailBuilder $message
      * @return mixed
+     * @throws NotificationModelNotFoundException
      */
     protected function populateEmailMessage($message)
     {
