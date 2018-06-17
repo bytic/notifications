@@ -5,7 +5,6 @@ namespace ByTIC\Notifications\Messages\Builder;
 use ByTIC\Common\Records\Emails\EmailTrait;
 use ByTIC\Common\Records\Emails\Builder\ViewBuilder as GenericBuilder;
 use ByTIC\Notifications\Notifications\AbstractNotification as Notification;
-use ByTIC\Notifications\Models\Messages\MessageTrait as Message;
 use ByTIC\Notifications\Notifiable;
 use Nip\Records\AbstractModels\Record;
 use Nip\Records\Locator\ModelLocator;
@@ -15,12 +14,8 @@ use Nip\Records\Locator\ModelLocator;
  *
  * @package ByTIC\Notifications\Messages\Builder
  */
-class EmailBuilder extends GenericBuilder
+abstract class EmailBuilder extends GenericBuilder
 {
-    /**
-     * @var Notification
-     */
-    protected $notification = null;
 
     /**
      * Model of notifiable trait
@@ -33,44 +28,6 @@ class EmailBuilder extends GenericBuilder
      * @var array|null
      */
     protected $mergeFields = null;
-
-    /**
-     * Returns the email subject
-     *
-     * @return string
-     */
-    public function generateEmailSubject()
-    {
-        return $this->getNotificationMessage()->getSubject();
-    }
-
-    /**
-     * @return Message
-     */
-    protected function getNotificationMessage()
-    {
-        return $this->getNotification()->getNotificationMessage();
-    }
-
-    /**
-     * @return Notification
-     */
-    public function getNotification()
-    {
-        return $this->notification;
-    }
-
-    /**
-     * Set the Notification instance
-     *
-     * @param Notification $notification Notification instance
-     *
-     * @return void
-     */
-    public function setNotification($notification)
-    {
-        $this->notification = $notification;
-    }
 
     /**
      * @inheritdoc
@@ -124,16 +81,6 @@ class EmailBuilder extends GenericBuilder
     public function getMergeFieldValue($field)
     {
         return null;
-    }
-
-    /**
-     * Returns the email content
-     *
-     * @return null|string
-     */
-    protected function generateEmailContent()
-    {
-        return $this->getNotificationMessage()->getContent();
     }
 
     /**
