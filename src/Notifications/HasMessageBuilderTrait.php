@@ -2,6 +2,8 @@
 
 namespace ByTIC\Notifications\Notifications;
 
+use ByTIC\Notifications\Messages\Builder\EmailBuilder;
+
 /**
  * Trait HasMessageBuilderTrait
  * @package ByTIC\Notifications\Notifications
