@@ -22,4 +22,24 @@ trait HasEmailDbMessageTrait
         $emailBuilder->setNotifiable($notifiable);
         return $emailBuilder->createEmail();
     }
+
+    /**
+     * @return EmailBuilder
+     */
+    public function generateEmailMessage()
+    {
+        $class = $this->generateEmailMessageClass();
+        /** @var EmailBuilder $message */
+        $message = new $class();
+//        $this->populateEmailMessage($message);
+        return $message;
+    }
+
+    /**
+     * @return string
+     */
+    public function generateEmailMessageClass()
+    {
+        return EmailBuilder::class;
+    }
 }

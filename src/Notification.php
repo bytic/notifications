@@ -12,12 +12,4 @@ use ByTIC\Notifications\Notifications\HasEmailDbMessageTrait;
 class Notification extends AbstractNotification
 {
     use HasEmailDbMessageTrait;
-
-    /**
-     * @inheritdoc
-     */
-    public function getRecipientName()
-    {
-        return 'users';
-    }
 }
