@@ -10,6 +10,7 @@ use ByTIC\Notifications\Messages\Builder\EmailBuilder;
  */
 trait HasEmailDbMessageTrait
 {
+    use HasMessageBuilderTrait;
 
     /**
      * @param $notifiable
@@ -18,28 +19,8 @@ trait HasEmailDbMessageTrait
     public function toMailDb($notifiable)
     {
         /** @var EmailBuilder $emailBuilder */
-        $emailBuilder = $this->generateEmailMessage();
+        $emailBuilder = $this->generateMessageBuilder('mail');
         $emailBuilder->setNotifiable($notifiable);
         return $emailBuilder->createEmail();
-    }
-
-    /**
-     * @return EmailBuilder
-     */
-    public function generateEmailMessage()
-    {
-        $class = $this->generateEmailMessageClass();
-        /** @var EmailBuilder $message */
-        $message = new $class();
-//        $this->populateEmailMessage($message);
-        return $message;
-    }
-
-    /**
-     * @return string
-     */
-    public function generateEmailMessageClass()
-    {
-        return EmailBuilder::class;
     }
 }
