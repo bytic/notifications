@@ -5,13 +5,13 @@ namespace ByTIC\Notifications;
 use ByTIC\Notifications\Channels\ChannelInterface;
 use ByTIC\Notifications\Dispatcher\Dispatcher;
 use ByTIC\Notifications\Dispatcher\DispatcherInterface;
-use Nip\Container\ServiceProvider\AbstractSignatureServiceProvider;
+use Nip\Container\ServiceProviders\Providers\AbstractServiceProvider;
 
 /**
  * Class NotificationServiceProvider
  * @package ByTIC\Notifications
  */
-class NotificationServiceProvider extends AbstractSignatureServiceProvider
+class NotificationServiceProvider extends AbstractServiceProvider
 {
 
     /**
@@ -26,13 +26,13 @@ class NotificationServiceProvider extends AbstractSignatureServiceProvider
     protected function registerChannels()
     {
         $manager = new ChannelManager();
-        $this->getContainer()->singleton(ChannelInterface::class, $manager);
+        $this->getContainer()->share(ChannelInterface::class, $manager);
     }
 
     protected function registerDispatcher()
     {
         $dispatcher = new Dispatcher(app(ChannelInterface::class));
-        $this->getContainer()->singleton(DispatcherInterface::class, $dispatcher);
+        $this->getContainer()->share(DispatcherInterface::class, $dispatcher);
     }
 
     /**
