@@ -10,6 +10,12 @@ use Nip\Records\AbstractModels\Record;
  */
 abstract class AbstractNotification
 {
+    /**
+     * The unique identifier for the notification.
+     *
+     * @var string
+     */
+    public $id;
 
     /** @noinspection PhpUnusedParameterInspection
      *
